@@ -22,7 +22,7 @@ class Ui_referee(object):
 
         if response.status_code==200:
             json=response.json()
-            gameId=0#TODO   
+            gameId=0#TODO
             self.hostLabel.setText()
             self.guestLabel.setText()
 

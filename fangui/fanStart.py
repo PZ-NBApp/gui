@@ -1,16 +1,12 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'fanStart.ui'
-#
-# Created by: PyQt5 UI code generator 5.14.1
-#
-# WARNING! All changes made in this file will be lost!
-
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-
 class Ui_fanStart(object):
+    def getTable(self):
+        print("table")
+    def getTeams(self):
+        print("teams")
+    def getGames(self):
+        print("games")
     def setupUi(self, fanStart):
         fanStart.setObjectName("fanStart")
         fanStart.resize(640, 480)
@@ -20,15 +16,26 @@ class Ui_fanStart(object):
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
+        spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout.addItem(spacerItem)
         self.gamesButton = QtWidgets.QPushButton(self.centralwidget)
         self.gamesButton.setObjectName("gamesButton")
+        self.gamesButton.clicked.connect(self.getGames)
         self.verticalLayout.addWidget(self.gamesButton)
+        spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout.addItem(spacerItem1)
         self.tableButton = QtWidgets.QPushButton(self.centralwidget)
         self.tableButton.setObjectName("tableButton")
+        self.tableButton.clicked.connect(self.getTable)
         self.verticalLayout.addWidget(self.tableButton)
+        spacerItem2 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout.addItem(spacerItem2)
         self.teamButton = QtWidgets.QPushButton(self.centralwidget)
         self.teamButton.setObjectName("teamButton")
+        self.teamButton.clicked.connect(self.getTeams)
         self.verticalLayout.addWidget(self.teamButton)
+        spacerItem3 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout.addItem(spacerItem3)
         self.verticalLayout_2.addLayout(self.verticalLayout)
         fanStart.setCentralWidget(self.centralwidget)
 
@@ -41,3 +48,13 @@ class Ui_fanStart(object):
         self.gamesButton.setText(_translate("fanStart", "Games"))
         self.tableButton.setText(_translate("fanStart", "Table"))
         self.teamButton.setText(_translate("fanStart", "Team"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    fanStart = QtWidgets.QMainWindow()
+    ui = Ui_fanStart()
+    ui.setupUi(fanStart)
+    fanStart.show()
+    sys.exit(app.exec_())
