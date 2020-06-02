@@ -1,12 +1,3 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'addPlayer.ui'
-#
-# Created by: PyQt5 UI code generator 5.14.1
-#
-# WARNING! All changes made in this file will be lost!
-
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
@@ -51,3 +42,13 @@ class Ui_addPlayer(object):
         self.surnameLabel.setText(_translate("addPlayer", "Surname"))
         self.clubLabel.setText(_translate("addPlayer", "Club"))
         self.applyButton.setText(_translate("addPlayer", "Apply"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    addPlayer = QtWidgets.QWidget()
+    ui = Ui_addPlayer()
+    ui.setupUi(addPlayer)
+    addPlayer.show()
+    sys.exit(app.exec_())

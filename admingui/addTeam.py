@@ -1,12 +1,3 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'addTeam.ui'
-#
-# Created by: PyQt5 UI code generator 5.14.1
-#
-# WARNING! All changes made in this file will be lost!
-
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
@@ -44,3 +35,13 @@ class Ui_addTeam(object):
         self.nameLabel.setText(_translate("addTeam", "Name"))
         self.cityLabel.setText(_translate("addTeam", "City"))
         self.applyButton.setText(_translate("addTeam", "Apply"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    addTeam = QtWidgets.QWidget()
+    ui = Ui_addTeam()
+    ui.setupUi(addTeam)
+    addTeam.show()
+    sys.exit(app.exec_())

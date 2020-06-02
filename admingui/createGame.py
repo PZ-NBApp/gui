@@ -1,12 +1,3 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'createGame.ui'
-#
-# Created by: PyQt5 UI code generator 5.14.1
-#
-# WARNING! All changes made in this file will be lost!
-
-
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
@@ -44,3 +35,13 @@ class Ui_createGame(object):
         self.hostLabel.setText(_translate("createGame", "Host"))
         self.guestLabel.setText(_translate("createGame", "Guest"))
         self.applyButton.setText(_translate("createGame", "Apply"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    createGame = QtWidgets.QWidget()
+    ui = Ui_createGame()
+    ui.setupUi(createGame)
+    createGame.show()
+    sys.exit(app.exec_())
