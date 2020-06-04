@@ -1,14 +1,30 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMainWindow
-from addPlayer import Ui_addPlayer
+#from addPlayer import
 
 
 class Ui_adminStart(object):
     def show_addPlayer(self):
-        self.window=QMainWindow()
-        self.ui=Ui_addPlayer()
-        self.ui.setupUi(self.window)
-        self.window.show()
+        #TODO
+        #otwieranie addPlayer UI i hide tego okna
+        print()
+        #DONE
+        #połaczenie przycisk z tą funkcją
+
+
+    def show_addTeam(self):
+        # TODO
+        # otwieranie addTea UI i hide tego okna
+        print()
+        # DONE
+        # połaczenie przycisk z tą funkcją
+
+    def show_createGame(self):
+        # TODO
+        # otwieranie createGame UI i hide tego okna
+        print()
+        # DONE
+        # połaczenie przycisk z tą funkcją
 
     def setupUi(self, adminStart):
         adminStart.setObjectName("adminStart")
@@ -30,11 +46,13 @@ class Ui_adminStart(object):
         self.addTeamButton = QtWidgets.QPushButton(self.centralwidget)
         self.addTeamButton.setObjectName("addTeamButton")
         self.verticalLayout.addWidget(self.addTeamButton)
+        self.addTeamButton.clicked.connect(self.show_addTeam)
         spacerItem2 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout.addItem(spacerItem2)
-        self.pushButton_3 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_3.setObjectName("pushButton_3")
-        self.verticalLayout.addWidget(self.pushButton_3)
+        self.createGameButton = QtWidgets.QPushButton(self.centralwidget)
+        self.createGameButton.setObjectName("createGameButton")
+        self.verticalLayout.addWidget(self.createGameButton)
+        self.createGameButton.clicked.connect(self.show_createGame)
         spacerItem3 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout.addItem(spacerItem3)
         self.verticalLayout_2.addLayout(self.verticalLayout)
@@ -48,7 +66,7 @@ class Ui_adminStart(object):
         adminStart.setWindowTitle(_translate("adminStart", "Admin"))
         self.addPlayerButton.setText(_translate("adminStart", "Add Player"))
         self.addTeamButton.setText(_translate("adminStart", "Add Team"))
-        self.pushButton_3.setText(_translate("adminStart", "Create game"))
+        self.createGameButton.setText(_translate("adminStart", "Create game"))
 
 
 if __name__ == "__main__":

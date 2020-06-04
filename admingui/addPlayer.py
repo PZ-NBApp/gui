@@ -1,7 +1,14 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import requests
 
 class Ui_addPlayer(object):
+    def click(self):
+        firstName=self.firstNameInput.text()
+        surname=self.surnameInput.text()
+        club=self.clubInput.text()
+        if(club==''):
+            response=requests.post
+        print()
     def setupUi(self, addPlayer):
         addPlayer.setObjectName("addPlayer")
         addPlayer.resize(640, 138)
@@ -29,6 +36,7 @@ class Ui_addPlayer(object):
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.clubLabel)
         self.applyButton = QtWidgets.QPushButton(addPlayer)
         self.applyButton.setObjectName("applyButton")
+        self.applyButton.clicked.connect(self.click)
         self.formLayout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.applyButton)
         self.verticalLayout.addLayout(self.formLayout)
 
