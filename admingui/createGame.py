@@ -1,7 +1,21 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+import requests
 
+#TODO
+#get teams with start of window
 
 class Ui_createGame(object):
+    def click(self):
+        #TODO
+        #host & guest as int
+        host = self.hostChoose
+        guest = self.guestChoose
+        response = requests.post("http://localhost:8080/game/add", json={
+            "hostId": host,
+            "guestId": guest
+        })
+        if response.status_code == 200:
+            print("OK")
     def setupUi(self, createGame):
         createGame.setObjectName("createGame")
         createGame.resize(640, 107)
@@ -23,6 +37,7 @@ class Ui_createGame(object):
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.guestChoose)
         self.applyButton = QtWidgets.QPushButton(createGame)
         self.applyButton.setObjectName("applyButton")
+        self.applyButton.clicked.connect(self.click)
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.applyButton)
         self.verticalLayout.addLayout(self.formLayout)
 
