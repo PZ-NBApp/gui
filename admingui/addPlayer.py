@@ -7,8 +7,12 @@ class Ui_addPlayer(object):
         surname=self.surnameInput.text()
         club=self.clubInput.text()
         if(club==''):
-            response=requests.post
-        print()
+            response=requests.post("http://localhost:8080/players/add", json={
+            "firstName": firstName,
+            "surname": surname
+            })
+        if response.status_code == 200:
+            print("OK")
     def setupUi(self, addPlayer):
         addPlayer.setObjectName("addPlayer")
         addPlayer.resize(640, 138)

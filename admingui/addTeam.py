@@ -1,7 +1,16 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import requests
 
 class Ui_addTeam(object):
+    def click(self):
+        name=self.nameInput.text()
+        city=self.cityInput.text()
+        response=requests.post("http://localhost:8080/team/add", json={
+            "name": name,
+            "city": city
+        })
+        if response.status_code == 200:
+            print("OK")
     def setupUi(self, addTeam):
         addTeam.setObjectName("addTeam")
         addTeam.resize(640, 107)
@@ -17,6 +26,7 @@ class Ui_addTeam(object):
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.cityLabel)
         self.applyButton = QtWidgets.QPushButton(addTeam)
         self.applyButton.setObjectName("applyButton")
+        self.applyButton.clicked.connect(self.click)
         self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.applyButton)
         self.nameInput = QtWidgets.QLineEdit(addTeam)
         self.nameInput.setObjectName("nameInput")
