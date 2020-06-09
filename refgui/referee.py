@@ -1,18 +1,27 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import requests
-
-gameId=0
+#8081
+gameId=[]
+hostId=0
+guestId=0
 hostResult=0
 guestResult=0
 
 class Ui_referee(object):
     def getGames(self):
+        global gameId
+        global hostResult
+        global guestResult
+        global guestId
+        global hostId
         self.gamesList.clear()
-        response=requests.get()
+        response=requests.get("http://localhost:8081/game")
         if response.status_code==200:
             json=response.json()
+            print(json)
             for i in json:
-                self.gamesList.addItem(i)
+                gameId.append(i['gameId'])
+                self.gamesList.addItem(gameId)
 
     def chooseGame(self):
         global gameId
@@ -40,6 +49,8 @@ class Ui_referee(object):
             self.info.setText("Wprowadzono niepoprawną wartość")
         else:
             self.info.setText("Wystąpił błąd")
+
+
     def setupUi(self, referee):
         referee.setObjectName("referee")
         referee.resize(640, 240)

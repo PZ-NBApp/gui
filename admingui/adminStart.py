@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMainWindow
 #from addPlayer import
-
+#8080
 
 class Ui_adminStart(object):
     def show_addPlayer(self):

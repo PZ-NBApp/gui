@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+#8082
 class Ui_fanStart(object):
     def getTable(self):
         print("table")
