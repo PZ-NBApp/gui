@@ -2,13 +2,58 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import requests
 
 class Ui_teamWindow(object):
+    def team(self):
+        '''
+            self.teamsList.clear()
+            response = requests.get("http://localhost:8082/team")
+            if response.status_code == 200:
+                json = response.json()
+                print(json)
+                for i in json:
+
+                    for i in json:
+                     idG.append(i['id'])
+                     ex_type.append(i['examinationType'])
+                     examination_type = ExamTypes[i['examinationType']].value
+                     self.exams.addItem(examination_type)
+                 print(idG)
+
+        '''
+        print()
+
+    def player(self):
+        '''
+            self.teamsList.clear()
+            response = requests.get("http://localhost:8082/team")
+            if response.status_code == 200:
+                json = response.json()
+                print(json)
+                for i in json:
+
+                    for i in json:
+                     idG.append(i['id'])
+                     ex_type.append(i['examinationType'])
+                     examination_type = ExamTypes[i['examinationType']].value
+                     self.exams.addItem(examination_type)
+                 print(idG)
+
+        '''
+        print()
+
     def setupUi(self, teamWindow):
         teamWindow.setObjectName("teamWindow")
-        teamWindow.resize(640, 480)
+        teamWindow.resize(640, 640)
         self.centralwidget = QtWidgets.QWidget(teamWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
         self.verticalLayout.setObjectName("verticalLayout")
+        self.teamsList = QtWidgets.QComboBox(self.centralwidget)
+        self.teamsList.setObjectName("teamsList")
+        self.verticalLayout.addWidget(self.teamsList)
+        self.applyButton = QtWidgets.QPushButton(self.centralwidget)
+        self.applyButton.setObjectName("applyButton")
+        self.applyButton.clicked.connect(self.team)
+        self.verticalLayout.addWidget(self.applyButton)
         self.verticalLayout_3 = QtWidgets.QVBoxLayout()
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.formLayout = QtWidgets.QFormLayout()
@@ -60,8 +105,29 @@ class Ui_teamWindow(object):
         self.verticalLayout_3.addWidget(self.playerChoose)
         self.showPlayerButton = QtWidgets.QPushButton(self.centralwidget)
         self.showPlayerButton.setObjectName("showPlayerButton")
+        self.showPlayerButton.clicked.connect(self.player)
         self.verticalLayout_3.addWidget(self.showPlayerButton)
         self.verticalLayout.addLayout(self.verticalLayout_3)
+        self.playerLabel = QtWidgets.QLabel(self.centralwidget)
+        self.playerLabel.setObjectName("playerLabel")
+        self.verticalLayout.addWidget(self.playerLabel)
+        self.formLayout_2 = QtWidgets.QFormLayout()
+        self.formLayout_2.setObjectName("formLayout_2")
+        self.firstNameLabel = QtWidgets.QLabel(self.centralwidget)
+        self.firstNameLabel.setObjectName("firstNameLabel")
+        self.formLayout_2.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.firstNameLabel)
+        self.firstNameOutput = QtWidgets.QLabel(self.centralwidget)
+        self.firstNameOutput.setText("")
+        self.firstNameOutput.setObjectName("firstNameOutput")
+        self.formLayout_2.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.firstNameOutput)
+        self.surnameLabel = QtWidgets.QLabel(self.centralwidget)
+        self.surnameLabel.setObjectName("surnameLabel")
+        self.formLayout_2.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.surnameLabel)
+        self.surnameOutput = QtWidgets.QLabel(self.centralwidget)
+        self.surnameOutput.setText("")
+        self.surnameOutput.setObjectName("surnameOutput")
+        self.formLayout_2.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.surnameOutput)
+        self.verticalLayout.addLayout(self.formLayout_2)
         teamWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(teamWindow)
@@ -70,6 +136,7 @@ class Ui_teamWindow(object):
     def retranslateUi(self, teamWindow):
         _translate = QtCore.QCoreApplication.translate
         teamWindow.setWindowTitle(_translate("teamWindow", "Team"))
+        self.applyButton.setText(_translate("teamWindow", "Show Team"))
         self.nameLabel.setText(_translate("teamWindow", "Name"))
         self.cityLabel.setText(_translate("teamWindow", "City"))
         self.gamesPlayedLabel.setText(_translate("teamWindow", "Games played"))
@@ -77,6 +144,9 @@ class Ui_teamWindow(object):
         self.gamesLostLabel.setText(_translate("teamWindow", "Games lost"))
         self.playersListLabel.setText(_translate("teamWindow", "Players list"))
         self.showPlayerButton.setText(_translate("teamWindow", "Show Player"))
+        self.playerLabel.setText(_translate("teamWindow", "Player"))
+        self.firstNameLabel.setText(_translate("teamWindow", "First Name"))
+        self.surnameLabel.setText(_translate("teamWindow", "Surname"))
 
 
 if __name__ == "__main__":

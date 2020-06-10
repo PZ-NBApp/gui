@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMainWindow
 from tableWindow import Ui_tableWindow
-from teamsListWindow import Ui_teamsListWindow
+from teamWindow import Ui_teamWindow
 from gamesWindow import Ui_gamesWindow
 #8082
 class Ui_fanStart(object):
@@ -13,7 +13,7 @@ class Ui_fanStart(object):
 
     def getTeams(self):
         self.window = QMainWindow()
-        self.ui = Ui_teamsListWindow()
+        self.ui = Ui_teamWindow()
         self.ui.setupUi(self.window)
         self.window.show()
 
