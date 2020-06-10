@@ -1,3 +1,4 @@
+import requests
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
@@ -19,7 +20,22 @@ class Ui_gamesWindow(object):
 
         self.retranslateUi(gamesWindow)
         QtCore.QMetaObject.connectSlotsByName(gamesWindow)
-
+    '''
+        self.guestChoose.clear()
+        response = requests.get("http://localhost:8082/team")
+        if response.status_code == 200:
+            json = response.json()
+            print(json)
+            for i in json:
+                
+                for i in json:
+                 idG.append(i['id'])
+                 ex_type.append(i['examinationType'])
+                 examination_type = ExamTypes[i['examinationType']].value
+                 self.exams.addItem(examination_type)
+             print(idG)
+              
+    '''
     def retranslateUi(self, gamesWindow):
         _translate = QtCore.QCoreApplication.translate
         gamesWindow.setWindowTitle(_translate("gamesWindow", "Games"))

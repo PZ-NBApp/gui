@@ -1,12 +1,28 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QMainWindow
+from tableWindow import Ui_tableWindow
+from teamsListWindow import Ui_teamsListWindow
+from gamesWindow import Ui_gamesWindow
 #8082
 class Ui_fanStart(object):
     def getTable(self):
-        print("table")
+        self.window = QMainWindow()
+        self.ui = Ui_tableWindow()
+        self.ui.setupUi(self.window)
+        self.window.show()
+
     def getTeams(self):
-        print("teams")
+        self.window = QMainWindow()
+        self.ui = Ui_teamsListWindow()
+        self.ui.setupUi(self.window)
+        self.window.show()
+
     def getGames(self):
-        print("games")
+        self.window = QMainWindow()
+        self.ui = Ui_gamesWindow()
+        self.ui.setupUi(self.window)
+        self.window.show()
+
     def setupUi(self, fanStart):
         fanStart.setObjectName("fanStart")
         fanStart.resize(640, 480)
