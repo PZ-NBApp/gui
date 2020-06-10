@@ -1,30 +1,28 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMainWindow
-#from addPlayer import
+from addPlayerWindow import Ui_addPlayerWindow
+from createGameWindow import Ui_createGameWindow
+from addTeamWindow import Ui_addTeamWindow
 #8080
 
 class Ui_adminStart(object):
     def show_addPlayer(self):
-        #TODO
-        #otwieranie addPlayer UI i hide tego okna
-        print()
-        #DONE
-        #połaczenie przycisk z tą funkcją
-
+        self.window = QMainWindow()
+        self.ui = Ui_addPlayerWindow()
+        self.ui.setupUi(self.window)
+        self.window.show()
 
     def show_addTeam(self):
-        # TODO
-        # otwieranie addTea UI i hide tego okna
-        print()
-        # DONE
-        # połaczenie przycisk z tą funkcją
+        self.window = QMainWindow()
+        self.ui = Ui_addTeamWindow()
+        self.ui.setupUi(self.window)
+        self.window.show()
 
     def show_createGame(self):
-        # TODO
-        # otwieranie createGame UI i hide tego okna
-        print()
-        # DONE
-        # połaczenie przycisk z tą funkcją
+        self.window = QMainWindow()
+        self.ui = Ui_createGameWindow()
+        self.ui.setupUi(self.window)
+        self.window.show()
 
     def setupUi(self, adminStart):
         adminStart.setObjectName("adminStart")
