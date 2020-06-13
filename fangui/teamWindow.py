@@ -11,15 +11,17 @@ class Ui_teamWindow(object):
             print(json)
             self.nameOutput.setText(json['name'])
             self.cityOutput.setText(json['city'])
-            self.gamesPlayedOutput.setText(json['gamesPlayed'])
-            self.gamesWonOutput.setText(json['gamesWon'])
-            self.gamesLostOutput.setText(json['gamesLost'])
+            self.gamesPlayedOutput.setText(str(json['gamesPlayed']))
+            self.gamesWonOutput.setText(str(json['gamesWon']))
+            self.gamesLostOutput.setText(str(json['gamesLost']))
             response2=requests.get("http://localhost:8082/assignation/team/{}".format(teamId))
             print(response2.status_code)
             if response2.status_code==200:
                 json2=response2.json()
                 print(json2)
-                self.playerList.addItem(json)
+                for i in json2:
+                    player=i['firstName']+' '+i['surname']
+                    self.playerList.addItem(player)
 
 
     def player(self):
