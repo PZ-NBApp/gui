@@ -3,49 +3,33 @@ import requests
 
 class Ui_teamWindow(object):
     def team(self):
-        teamId=self.teamsList.currentIndex()
-        response=requests.get("http://localhost:8082/team/{}".format(teamId))
+        teamId = self.teamsList.currentIndex()
+        response = requests.get("http://localhost:8082/team/{}".format(teamId))
         print(response.status_code)
-        if response.status_code==200:
-            json=response.json()
+        if response.status_code == 200:
+            json = response.json()
             print(json)
             self.nameOutput.setText(json['name'])
             self.cityOutput.setText(json['city'])
             self.gamesPlayedOutput.setText(str(json['gamesPlayed']))
             self.gamesWonOutput.setText(str(json['gamesWon']))
             self.gamesLostOutput.setText(str(json['gamesLost']))
-            response2=requests.get("http://localhost:8082/assignation/team/{}".format(teamId))
+            response2 = requests.get("http://localhost:8082/assignation/team/{}".format(teamId))
             print(response2.status_code)
-            if response2.status_code==200:
-                json2=response2.json()
+            if response2.status_code == 200:
+                json2 = response2.json()
                 print(json2)
+                namesList = []
                 for i in json2:
-                    player=i['firstName']+' '+i['surname']
-                    self.playerList.addItem(player)
-
-
-    def player(self):
-        '''
-            self.teamsList.clear()
-            response = requests.get("http://localhost:8082/team")
-            if response.status_code == 200:
-                json = response.json()
-                print(json)
-                for i in json:
-
-                    for i in json:
-                     idG.append(i['id'])
-                     ex_type.append(i['examinationType'])
-                     examination_type = ExamTypes[i['examinationType']].value
-                     self.exams.addItem(examination_type)
-                 print(idG)
-
-        '''
-        print()
+                    player = i['player']
+                    name = player['firstName'] + ' ' + player['surname']
+                    namesList.append(name)
+                namesList.reverse()
+                self.playerList.addItems(namesList)
 
     def setupUi(self, teamWindow):
         teamWindow.setObjectName("teamWindow")
-        teamWindow.resize(640, 640)
+        teamWindow.resize(640, 378)
         self.centralwidget = QtWidgets.QWidget(teamWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
@@ -97,12 +81,6 @@ class Ui_teamWindow(object):
         self.gamesLostOutput.setObjectName("gamesLostOutput")
         self.formLayout.setWidget(4, QtWidgets.QFormLayout.FieldRole, self.gamesLostOutput)
         self.verticalLayout_3.addLayout(self.formLayout)
-        self.playerChoose = QtWidgets.QComboBox(self.centralwidget)
-        self.playerChoose.setObjectName("playerChoose")
-        self.verticalLayout_3.addWidget(self.playerChoose)
-        self.showPlayerButton = QtWidgets.QPushButton(self.centralwidget)
-        self.showPlayerButton.setObjectName("showPlayerButton")
-        self.verticalLayout_3.addWidget(self.showPlayerButton)
         self.verticalLayout.addLayout(self.verticalLayout_3)
         self.playersListLabel = QtWidgets.QLabel(self.centralwidget)
         self.playersListLabel.setObjectName("playersListLabel")
@@ -110,31 +88,11 @@ class Ui_teamWindow(object):
         self.playerList = QtWidgets.QListWidget(self.centralwidget)
         self.playerList.setObjectName("playerList")
         self.verticalLayout.addWidget(self.playerList)
-        self.playerLabel = QtWidgets.QLabel(self.centralwidget)
-        self.playerLabel.setObjectName("playerLabel")
-        self.verticalLayout.addWidget(self.playerLabel)
-        self.formLayout_2 = QtWidgets.QFormLayout()
-        self.formLayout_2.setObjectName("formLayout_2")
-        self.firstNameLabel = QtWidgets.QLabel(self.centralwidget)
-        self.firstNameLabel.setObjectName("firstNameLabel")
-        self.firstNameLabel.setObjectName("firstNameLabel")
-        self.formLayout_2.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.firstNameLabel)
-        self.firstNameOutput = QtWidgets.QLabel(self.centralwidget)
-        self.firstNameOutput.setText("")
-        self.firstNameOutput.setObjectName("firstNameOutput")
-        self.formLayout_2.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.firstNameOutput)
-        self.surnameLabel = QtWidgets.QLabel(self.centralwidget)
-        self.surnameLabel.setObjectName("surnameLabel")
-        self.formLayout_2.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.surnameLabel)
-        self.surnameOutput = QtWidgets.QLabel(self.centralwidget)
-        self.surnameOutput.setText("")
-        self.surnameOutput.setObjectName("surnameOutput")
-        self.formLayout_2.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.surnameOutput)
-        self.verticalLayout.addLayout(self.formLayout_2)
         teamWindow.setCentralWidget(self.centralwidget)
 
         self.teamsList.clear()
         self.teamsList.addItem('')
+        teamsList=[]
         response = requests.get("http://localhost:8082/team")
         print(response.status_code)
         if response.status_code == 200:
@@ -142,7 +100,9 @@ class Ui_teamWindow(object):
             print(json)
             for i in json:
                 text = i['city'] + ' ' + i['name']
-                self.teamsList.addItem(text)
+                teamsList.append(text)
+        teamsList.reverse()
+        self.teamsList.addItems(teamsList)
 
         self.retranslateUi(teamWindow)
         QtCore.QMetaObject.connectSlotsByName(teamWindow)
@@ -157,10 +117,6 @@ class Ui_teamWindow(object):
         self.gamesWonLabel.setText(_translate("teamWindow", "Games won"))
         self.gamesLostLabel.setText(_translate("teamWindow", "Games lost"))
         self.playersListLabel.setText(_translate("teamWindow", "Players list"))
-        self.showPlayerButton.setText(_translate("teamWindow", "Show Player"))
-        self.playerLabel.setText(_translate("teamWindow", "Player"))
-        self.firstNameLabel.setText(_translate("teamWindow", "First Name"))
-        self.surnameLabel.setText(_translate("teamWindow", "Surname"))
 
 
 if __name__ == "__main__":

@@ -1,6 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import requests
 
+ls=[]
 class Ui_createGameWindow(object):
     def click(self):
 
@@ -56,8 +57,10 @@ class Ui_createGameWindow(object):
             print(json)
             for i in json:
                 text = i['city'] +' '+ i['name']
-                self.hostChoose.addItem(text)
-                self.guestChoose.addItem(text)
+                ls.append(text)
+        ls.reverse()
+        self.hostChoose.addItems(ls)
+        self.guestChoose.addItems(ls)
 
     def retranslateUi(self, createGameWindow):
         _translate = QtCore.QCoreApplication.translate
