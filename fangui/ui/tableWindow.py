@@ -1,5 +1,14 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'tableWindow.ui'
+#
+# Created by: PyQt5 UI code generator 5.14.1
+#
+# WARNING! All changes made in this file will be lost!
+
+
 from PyQt5 import QtCore, QtGui, QtWidgets
-import requests
+
 
 class Ui_tableWindow(object):
     def setupUi(self, tableWindow):
@@ -21,21 +30,6 @@ class Ui_tableWindow(object):
 
         self.retranslateUi(tableWindow)
         QtCore.QMetaObject.connectSlotsByName(tableWindow)
-    '''
-        self.guestChoose.clear()
-        response = requests.get("http://localhost:8082/team")
-        if response.status_code == 200:
-            json = response.json()
-            print(json)
-            for i in json:
-                for i in json:
-                 idG.append(i['id'])
-                 ex_type.append(i['examinationType'])
-                 examination_type = ExamTypes[i['examinationType']].value
-                 self.exams.addItem(examination_type)
-             print(idG)
-  
-    '''
 
     def retranslateUi(self, tableWindow):
         _translate = QtCore.QCoreApplication.translate

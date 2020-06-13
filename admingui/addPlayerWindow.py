@@ -37,32 +37,21 @@ class Ui_addPlayerWindow(object):
         self.surnameInput = QtWidgets.QLineEdit(self.layoutWidget)
         self.surnameInput.setObjectName("surnameInput")
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.surnameInput)
-        self.clubLabel = QtWidgets.QLabel(self.layoutWidget)
-        self.clubLabel.setObjectName("clubLabel")
-        self.formLayout.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.clubLabel)
         self.applyButton = QtWidgets.QPushButton(self.layoutWidget)
         self.applyButton.setObjectName("applyButton")
         self.applyButton.clicked.connect(self.click)
-        self.formLayout.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.applyButton)
-        self.clubChooseBox = QtWidgets.QComboBox(self.layoutWidget)
-        self.clubChooseBox.setObjectName("clubChooseBox")
-        self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.clubChooseBox)
+        self.formLayout.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.applyButton)
         addPlayerWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(addPlayerWindow)
         QtCore.QMetaObject.connectSlotsByName(addPlayerWindow)
-
-        self.clubChooseBox.clear()
-
 
     def retranslateUi(self, addPlayerWindow):
         _translate = QtCore.QCoreApplication.translate
         addPlayerWindow.setWindowTitle(_translate("addPlayerWindow", "Add Player"))
         self.firstNameLabel.setText(_translate("addPlayerWindow", "First Name"))
         self.surnameLabel.setText(_translate("addPlayerWindow", "Surname"))
-        self.clubLabel.setText(_translate("addPlayerWindow", "Club"))
         self.applyButton.setText(_translate("addPlayerWindow", "Apply"))
-
 
 if __name__ == "__main__":
     import sys

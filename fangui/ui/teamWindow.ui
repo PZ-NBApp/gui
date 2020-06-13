@@ -102,16 +102,6 @@
        </layout>
       </item>
       <item>
-       <widget class="QLabel" name="playersListLabel">
-        <property name="text">
-         <string>Players list</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QListView" name="playersList"/>
-      </item>
-      <item>
        <widget class="QComboBox" name="playerChoose"/>
       </item>
       <item>
@@ -122,6 +112,16 @@
        </widget>
       </item>
      </layout>
+    </item>
+    <item>
+     <widget class="QLabel" name="playersListLabel">
+      <property name="text">
+       <string>Players list</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QListWidget" name="playerList"/>
     </item>
     <item>
      <widget class="QLabel" name="playerLabel">

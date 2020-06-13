@@ -1,46 +1,16 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'teamWindow.ui'
+#
+# Created by: PyQt5 UI code generator 5.14.1
+#
+# WARNING! All changes made in this file will be lost!
+
+
 from PyQt5 import QtCore, QtGui, QtWidgets
-import requests
+
 
 class Ui_teamWindow(object):
-    def team(self):
-        teamId=self.teamsList.currentIndex()
-        response=requests.get("http://localhost:8082/team/{}".format(teamId))
-        print(response.status_code)
-        if response.status_code==200:
-            json=response.json()
-            print(json)
-            self.nameOutput.setText(json['name'])
-            self.cityOutput.setText(json['city'])
-            self.gamesPlayedOutput.setText(json['gamesPlayed'])
-            self.gamesWonOutput.setText(json['gamesWon'])
-            self.gamesLostOutput.setText(json['gamesLost'])
-            response2=requests.get("http://localhost:8082/assignation/team/{}".format(teamId))
-            print(response2.status_code)
-            if response2.status_code==200:
-                json2=response2.json()
-                print(json2)
-                self.playerList.addItem(json)
-
-
-    def player(self):
-        '''
-            self.teamsList.clear()
-            response = requests.get("http://localhost:8082/team")
-            if response.status_code == 200:
-                json = response.json()
-                print(json)
-                for i in json:
-
-                    for i in json:
-                     idG.append(i['id'])
-                     ex_type.append(i['examinationType'])
-                     examination_type = ExamTypes[i['examinationType']].value
-                     self.exams.addItem(examination_type)
-                 print(idG)
-
-        '''
-        print()
-
     def setupUi(self, teamWindow):
         teamWindow.setObjectName("teamWindow")
         teamWindow.resize(640, 640)
@@ -53,7 +23,6 @@ class Ui_teamWindow(object):
         self.verticalLayout.addWidget(self.teamsList)
         self.applyButton = QtWidgets.QPushButton(self.centralwidget)
         self.applyButton.setObjectName("applyButton")
-        self.applyButton.clicked.connect(self.team)
         self.verticalLayout.addWidget(self.applyButton)
         self.verticalLayout_3 = QtWidgets.QVBoxLayout()
         self.verticalLayout_3.setObjectName("verticalLayout_3")
@@ -115,7 +84,6 @@ class Ui_teamWindow(object):
         self.formLayout_2.setObjectName("formLayout_2")
         self.firstNameLabel = QtWidgets.QLabel(self.centralwidget)
         self.firstNameLabel.setObjectName("firstNameLabel")
-        self.firstNameLabel.setObjectName("firstNameLabel")
         self.formLayout_2.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.firstNameLabel)
         self.firstNameOutput = QtWidgets.QLabel(self.centralwidget)
         self.firstNameOutput.setText("")
@@ -131,17 +99,6 @@ class Ui_teamWindow(object):
         self.verticalLayout.addLayout(self.formLayout_2)
         teamWindow.setCentralWidget(self.centralwidget)
 
-        self.teamsList.clear()
-        self.teamsList.addItem('')
-        response = requests.get("http://localhost:8082/team")
-        print(response.status_code)
-        if response.status_code == 200:
-            json = response.json()
-            print(json)
-            for i in json:
-                text = i['city'] + ' ' + i['name']
-                self.teamsList.addItem(text)
-
         self.retranslateUi(teamWindow)
         QtCore.QMetaObject.connectSlotsByName(teamWindow)
 
@@ -154,10 +111,10 @@ class Ui_teamWindow(object):
         self.gamesPlayedLabel.setText(_translate("teamWindow", "Games played"))
         self.gamesWonLabel.setText(_translate("teamWindow", "Games won"))
         self.gamesLostLabel.setText(_translate("teamWindow", "Games lost"))
-        self.playersListLabel.setText(_translate("teamWindow", "Players list"))
         self.showPlayerButton.setText(_translate("teamWindow", "Show Player"))
+        self.playersListLabel.setText(_translate("teamWindow", "Players list"))
         self.playerLabel.setText(_translate("teamWindow", "Player"))
-        self.firstNameLabel.setText(_translate("teamWindow", "First Name"))
+        self.firstNameLabel.setText(_translate("teamWindow", "first Name"))
         self.surnameLabel.setText(_translate("teamWindow", "Surname"))
 
 

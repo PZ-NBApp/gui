@@ -18,7 +18,7 @@
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QListView" name="gamesList"/>
+       <widget class="QListWidget" name="listWidget"/>
       </item>
      </layout>
     </item>
