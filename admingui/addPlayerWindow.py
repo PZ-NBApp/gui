@@ -1,6 +1,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import requests
 
+idTeam=[]
+
 class Ui_addPlayerWindow(object):
     def click(self):
         firstName=self.firstNameInput.text()
@@ -10,6 +12,7 @@ class Ui_addPlayerWindow(object):
             "firstName": firstName,
             "surname": surname
             })
+        print(response.status_code)
         #TODO
         #how to assign player to club
         if response.status_code == 200:
@@ -58,14 +61,12 @@ class Ui_addPlayerWindow(object):
             json = response.json()
             print(json)
             for i in json:
-                '''
-                for i in json:
-                 idG.append(i['id'])
-                 ex_type.append(i['examinationType'])
-                 examination_type = ExamTypes[i['examinationType']].value
-                 self.exams.addItem(examination_type)
-             print(idG)
-                '''
+                #idTeam.append(i['teamId'])
+                #ex_type.append(i['examinationType'])
+                #examination_type = ExamTypes[i['examinationType']].value
+                self.clubChooseBox.addItem(i['teamId'])
+                print(idTeam)
+
 
     def retranslateUi(self, addPlayerWindow):
         _translate = QtCore.QCoreApplication.translate
