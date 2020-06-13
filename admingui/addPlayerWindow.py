@@ -7,14 +7,11 @@ class Ui_addPlayerWindow(object):
     def click(self):
         firstName=self.firstNameInput.text()
         surname=self.surnameInput.text()
-        club=self.clubChooseBox.currentText()
         response=requests.post("http://localhost:8080/players/add", json={
             "firstName": firstName,
             "surname": surname
             })
         print(response.status_code)
-        #TODO
-        #how to assign player to club
         if response.status_code == 200:
             print("OK")
     def setupUi(self, addPlayerWindow):
@@ -56,16 +53,6 @@ class Ui_addPlayerWindow(object):
         QtCore.QMetaObject.connectSlotsByName(addPlayerWindow)
 
         self.clubChooseBox.clear()
-        response = requests.get("http://localhost:8080/team")
-        if response.status_code == 200:
-            json = response.json()
-            print(json)
-            for i in json:
-                #idTeam.append(i['teamId'])
-                #ex_type.append(i['examinationType'])
-                #examination_type = ExamTypes[i['examinationType']].value
-                self.clubChooseBox.addItem(i['teamId'])
-                print(idTeam)
 
 
     def retranslateUi(self, addPlayerWindow):

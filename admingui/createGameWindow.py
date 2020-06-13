@@ -4,12 +4,13 @@ import requests
 class Ui_createGameWindow(object):
     def click(self):
 
-        host = self.hostChoose.currentText()
-        guest = self.guestChoose.currentText()
+        hostId = str(self.hostChoose.currentIndex())
+        guestId = str(self.guestChoose.currentIndex())
         response = requests.post("http://localhost:8080/game/add", json={
-            "hostId": host,
-            "guestId": guest
+            "host": hostId,
+            "guest": guestId
         })
+
         if response.status_code == 200:
             print("OK")
 
@@ -46,20 +47,17 @@ class Ui_createGameWindow(object):
         QtCore.QMetaObject.connectSlotsByName(createGameWindow)
 
         self.hostChoose.clear()
+        self.hostChoose.addItem('')
         self.guestChoose.clear()
+        self.guestChoose.addItem('')
         response = requests.get("http://localhost:8080/team")
         if response.status_code == 200:
             json = response.json()
             print(json)
             for i in json:
-                '''
-                for i in json:
-                 idG.append(i['id'])
-                 ex_type.append(i['examinationType'])
-                 examination_type = ExamTypes[i['examinationType']].value
-                 self.exams.addItem(examination_type)
-             print(idG)
-                '''
+                text = i['city'] +' '+ i['name']
+                self.hostChoose.addItem(text)
+                self.guestChoose.addItem(text)
 
     def retranslateUi(self, createGameWindow):
         _translate = QtCore.QCoreApplication.translate

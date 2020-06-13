@@ -15,41 +15,43 @@ class Ui_referee(object):
         global guestId
         global hostId
         self.gamesList.clear()
+        self.gamesList.addItem('')
         response=requests.get("http://localhost:8081/game")
         if response.status_code==200:
             json=response.json()
             print(json)
             for i in json:
-                gameId.append(i['gameId'])
-                self.gamesList.addItem(gameId)
+                host=i['host']
+                guest=i['guest']
+                text = host['city'] + ' ' + host['name'] + ' vs ' + guest['city'] + ' ' + guest['name']
+                self.gamesList.addItem(text)
 
     def chooseGame(self):
         global gameId
-        match=self.gamesList.currentText()
-        url="" #"http://localhost:8081/examinations/order/?orderNumber={}".format(order_number)
-        response=requests.get(url)
-
+        gameId=self.gamesList.currentIndex()
+        response=requests.get("http://localhost:8081/game/{}".format(gameId))
+        print(response.status_code)
         if response.status_code==200:
             json=response.json()
-            gameId=0#TODO
-            self.hostLabel.setText()
-            self.guestLabel.setText()
+            print(json)
+            host = json['host']
+            guest = json['guest']
+            hostName=host['city'] + ' ' + host['name']
+            guestName=guest['city'] + ' ' + guest['name']
+            self.hostLabel.setText(hostName)
+            self.guestLabel.setText(guestName)
 
     def saveResult(self):
         global gameId
         global hostResult
         global guestResult
-        hostResult=self.hostResultInput.text()
-        guestResult=self.guestResultInput.text()
-        response=requests.patch()#"http://localhost:8081/examinations/{}?patientValue={}".format(examination_result_id, patient_value))
+        hostResult=self.hostResultInput.toPlainText()
+        guestResult=self.guestResultInput.toPlainText()
+        response=requests.patch("http://localhost:8081/game/{}".format(gameId), json={
+            "hostResult": hostResult,
+	        "guestResult": guestResult
+        })
         print(response.status_code)
-        if response.status_code == 200:
-            self.info.setText("Poprawnie zapisano wynik")
-        elif response.status_code == 400:
-            self.info.setText("Wprowadzono niepoprawną wartość")
-        else:
-            self.info.setText("Wystąpił błąd")
-
 
     def setupUi(self, referee):
         referee.setObjectName("referee")
