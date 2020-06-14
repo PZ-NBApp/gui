@@ -1,8 +1,8 @@
 import requests
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-teamList=[]
-playerList=[]
+teamIdList=[]
+playerIdList=[]
 
 class Ui_assignationWindow(object):
     def click(self):
@@ -52,9 +52,9 @@ class Ui_assignationWindow(object):
             print(json)
             for i in json:
                 text = i['city'] + ' ' + i['name']
-                teamList.append(text)
-        teamList.reverse()
-        self.teamComboBox.addItems(teamList)
+                self.teamComboBox.addItem(text)
+                teamIdList.append(i['teamId'])
+        print(teamIdList)
 
         self.playerComboBox.clear()
         self.playerComboBox.addItem('')
@@ -64,9 +64,9 @@ class Ui_assignationWindow(object):
             print(json)
             for i in json:
                 text = i['firstName'] + ' ' + i['surname']
-                playerList.append(text)
-        playerList.reverse()
-        self.playerComboBox.addItem(text)
+                playerIdList.append(i['playerId'])
+                self.playerComboBox.addItem(text)
+        print(playerIdList)
 
     def retranslateUi(self, assignationWindow):
         _translate = QtCore.QCoreApplication.translate
