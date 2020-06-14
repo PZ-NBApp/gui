@@ -16,6 +16,7 @@ class Ui_teamWindow(object):
             self.gamesLostOutput.setText(str(json['gamesLost']))
             response2 = requests.get("http://localhost:8082/assignation/team/{}".format(teamId))
             print(response2.status_code)
+            self.playerList.clear()
             if response2.status_code == 200:
                 json2 = response2.json()
                 print(json2)
@@ -23,9 +24,7 @@ class Ui_teamWindow(object):
                 for i in json2:
                     player = i['player']
                     name = player['firstName'] + ' ' + player['surname']
-                    namesList.append(name)
-                namesList.reverse()
-                self.playerList.addItems(namesList)
+                    self.playerList.addItem(name)
 
     def setupUi(self, teamWindow):
         teamWindow.setObjectName("teamWindow")
@@ -100,9 +99,10 @@ class Ui_teamWindow(object):
             print(json)
             for i in json:
                 text = i['city'] + ' ' + i['name']
-                teamsList.append(text)
-        teamsList.reverse()
-        self.teamsList.addItems(teamsList)
+                self.teamsList.addItem(text)
+                #teamsList.append(text)
+        #teamsList.reverse()
+        #self.teamsList.addItems(teamsList)
 
         self.retranslateUi(teamWindow)
         QtCore.QMetaObject.connectSlotsByName(teamWindow)
